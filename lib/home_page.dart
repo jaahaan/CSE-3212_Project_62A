@@ -44,22 +44,51 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+
       body: SingleChildScrollView(
         child: Column(
           children: [
             Text(
-              "Hello",
+              "Hello, Welcome to our project!!",
               style: GoogleFonts.lobster(
-                textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                textStyle: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
-            Image.asset(
-              'assets/images/images.jpeg',
-              height: 400,
-              fit: BoxFit.fill,
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blueGrey,
+                foregroundColor: Colors.white,
+                fixedSize: Size(100, 20),
+              ),
+              child: Text("Click"),
             ),
-            Image.network(
-              "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=500",
+            SizedBox(height: 20),
+            TextButton(
+              onPressed: () {},
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.brown,
+                foregroundColor: Colors.white,
+                fixedSize: Size(100, 20),
+                shape: ContinuousRectangleBorder(),
+              ),
+              child: Text("Hello"),
+            ),
+            SizedBox(height: 20),
+
+            OutlinedButton(onPressed: () {}, child: Text("OutlinedButton")),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Image.asset(
+                //   'assets/images/images.jpeg',
+                //   height: 400,
+                //   fit: BoxFit.fill,
+                // ),
+                // Image.network(
+                //   "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=500",
+                // ),
+              ],
             ),
           ],
         ),
