@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project_62a/profile_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -30,6 +31,8 @@ class HomePage extends StatelessWidget {
             child: UserAccountsDrawerHeader(
               accountName: Text("Name"),
               accountEmail: Text("Email"),
+              currentAccountPicture: Image.asset("assets/images/flutter.png"),
+              currentAccountPictureSize: Size(50, 50),
             ),
           ),
           ListTile(
@@ -38,7 +41,17 @@ class HomePage extends StatelessWidget {
             title: Text("Home"),
           ),
           ListTile(
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return ProfilePage();
+                  },
+                ),
+              );
+            },
             leading: Icon(Icons.person),
             title: Text("Profile"),
           ),
