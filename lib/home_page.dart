@@ -67,6 +67,8 @@ class HomePage extends StatelessWidget {
                 textStyle: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
+            Container(),
+
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
@@ -77,22 +79,35 @@ class HomePage extends StatelessWidget {
               child: Text("Click"),
             ),
             SizedBox(height: 20),
-            TextButton(
-              onPressed: () {},
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.brown,
-                foregroundColor: Colors.white,
-                fixedSize: Size(100, 20),
-                shape: ContinuousRectangleBorder(),
-              ),
-              child: Text("Hello"),
-            ),
-            SizedBox(height: 20),
 
-            OutlinedButton(onPressed: () {}, child: Text("OutlinedButton")),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                OutlinedButton(onPressed: () {}, child: Text("OutlinedButton")),
+                TextButton(
+                  onPressed: () {},
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.brown,
+                    foregroundColor: Colors.white,
+                    fixedSize: Size(100, 20),
+                    shape: ContinuousRectangleBorder(),
+                  ),
+                  child: Text("Hello"),
+                ),
+                Column(
+                  children: [
+                    Text(
+                      "Hello!",
+                      style: GoogleFonts.lobster(
+                        textStyle: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    ElevatedButton(onPressed: () {}, child: Text("data")),
+                  ],
+                ),
                 // Image.asset(
                 //   'assets/images/images.jpeg',
                 //   height: 400,
