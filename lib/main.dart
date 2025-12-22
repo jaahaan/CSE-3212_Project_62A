@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_62a/converter_page.dart';
+import 'package:project_62a/gridview_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
-      home: const ConverterPage(),
+      home: const GridviewPage(),
     );
   }
 }
