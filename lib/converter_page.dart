@@ -42,7 +42,6 @@ class _ConverterPageState extends State {
                       keyboardType: TextInputType.text,
                       hint: "Enter your name..",
                       label: "Name",
-                      errorText: errorText,
                       icon: Icons.person,
                       validator: (value) {
                         if (value.isEmpty) {
@@ -59,9 +58,12 @@ class _ConverterPageState extends State {
                       keyboardType: TextInputType.visiblePassword,
                       hint: "Enter your password..",
                       label: "Password",
-                      errorText: errorText,
                       icon: Icons.lock,
-                      validator: (value) {},
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return "Field is Empty!!";
+                        }
+                      },
                     ),
                     ElevatedButton(
                       onPressed: () {

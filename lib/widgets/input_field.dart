@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
 class InputField extends StatelessWidget {
-  final controller, keyboardType, hint, label, errorText, icon, validator;
+  final controller, keyboardType, hint, label, icon, validator;
   const InputField({
     super.key,
     required this.controller,
     required this.keyboardType,
     required this.hint,
     required this.label,
-    required this.errorText,
     required this.icon,
     required this.validator,
   });
@@ -21,7 +20,6 @@ class InputField extends StatelessWidget {
       obscureText: keyboardType == TextInputType.visiblePassword ? true : false,
       validator: validator,
       decoration: InputDecoration(
-        errorText: errorText,
         hintText: hint,
         labelText: label,
         prefixIcon: Icon(icon),

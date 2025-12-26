@@ -1,9 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project_62a/auth/login_page.dart';
 import 'package:project_62a/profile_page.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final _supabase = Supabase.instance.client;
+
+  Future<Map<String, dynamic>?> getCurrentUser() async {
+    final user = _supabase.auth.currentUser;
+    if (user == null) return null;
+    final res =
+        await _supabase.from("profiles").select().eq('id', user.id).single();
+    return res;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +29,21 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.blueGrey,
         foregroundColor: Colors.white,
+
         // leading: Icon(Icons.home, color: Colors.amber),
         title: Text("HomePage"),
         actions: [
           IconButton(onPressed: () {}, icon: Icon(Icons.settings)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.logout)),
+          IconButton(
+            onPressed: () {
+              _supabase.auth.signOut();
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => LoginPage()),
+              );
+            },
+            icon: Icon(Icons.logout),
+          ),
         ],
       ),
 
@@ -67,7 +94,37 @@ class HomePage extends StatelessWidget {
                 textStyle: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
-            Container(),
+            FutureBuilder(
+              future: getCurrentUser(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                if (snapshot.hasError) {
+                  return Text("Error ${snapshot.error}");
+                }
+                if (!snapshot.hasData) {
+                  return const Text("No User Found!!");
+                }
+                final profile = snapshot.data as Map<String, dynamic>;
+                return SizedBox(
+                  width: 300,
+                  height: 100,
+                  child: Card(
+                    color: Colors.blueGrey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Name: ${profile['name']}"),
+                        Text("Email: ${profile['email']}"),
+                        if (profile['avatar_url'] != null)
+                          Image.network(profile['avatar_url']),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
 
             ElevatedButton(
               onPressed: () {},

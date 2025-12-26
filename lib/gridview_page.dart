@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_62a/single_item_page.dart';
 
 class GridviewPage extends StatelessWidget {
   const GridviewPage({super.key});
@@ -58,13 +59,31 @@ class GridviewPage extends StatelessWidget {
         ),
         itemCount: myItems.length,
         itemBuilder: (context, index) {
-          return Card(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.network(myItems[index]['img']!, height: 100, width: 100),
-                Text(myItems[index]['title']!),
-              ],
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder:
+                      (context) => SingleItemPage(
+                        img: myItems[index]['img']!,
+                        title: myItems[index]['title']!,
+                      ),
+                ),
+              );
+            },
+            child: Card(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.network(
+                    myItems[index]['img']!,
+                    height: 100,
+                    width: 100,
+                  ),
+                  Text(myItems[index]['title']!),
+                ],
+              ),
             ),
           );
         },
